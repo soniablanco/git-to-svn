@@ -7,7 +7,6 @@ set -e
 
 rm -r -f target_folder
 rm -r -f svn_source
-rm -r -f git_source
 svn checkout --username $SVN_USERNAME --password $SVN_PASSWORD  --non-interactive $1 svn_source
 cd svn_source
 previousHash=""
@@ -17,7 +16,6 @@ then
 fi
 cd ..
 
-git clone --branch $3 $2 git_source
 cd git_source
 currentHash=$(git rev-parse HEAD)
 changelog=$(git log --oneline $previousHash...$currentHash)
@@ -35,7 +33,6 @@ cp -a git_source/. target_folder/
 rm -r target_folder/.git
 
 rm -r svn_source
-rm -r git_source
 
 cd target_folder
 if [[ ! -z $(svn status) ]]; then

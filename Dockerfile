@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk --no-cache add openssh bash nano git subversion
+RUN apk --no-cache add bash git subversion
 
 
 COPY syncToSVN.sh syncToSVN.sh 
